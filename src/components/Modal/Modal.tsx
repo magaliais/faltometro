@@ -11,7 +11,7 @@ const Modal = ({ isOpen, setIsOpen, children }: ModalProps) => {
   return (
     <Dialog
       open={isOpen}
-      as="dialog"
+      as="div"
       className="relative z-10 focus:outline-none"
       onClose={() => setIsOpen(false)}
     >
