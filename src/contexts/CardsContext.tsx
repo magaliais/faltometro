@@ -5,6 +5,7 @@ interface CardsContextType {
   cards: CardType[];
   setCards: (value: CardType[]) => void;
   createCard: (card: CardType) => void;
+  deleteCard: (id: string) => void;
   increaseCardAbsence: (id: string) => void;
   decreaseCardAbsence: (id: string) => void;
 }
@@ -37,6 +38,11 @@ export const CardsProvider = ({ children }: CardsProviderProps) => {
     setCards([...cards, newCard]);
   };
 
+  const deleteCard = (id: string) => {
+    const updatedCards = cards.filter((card) => card.id !== id);
+    setCards(updatedCards);
+  };
+
   const increaseCardAbsence = (id: string) => {
     if (cards.filter((card) => card.id === id)[0].absences >= 8) return;
 
@@ -63,6 +69,7 @@ export const CardsProvider = ({ children }: CardsProviderProps) => {
         cards,
         setCards,
         createCard,
+        deleteCard,
         increaseCardAbsence,
         decreaseCardAbsence,
       }}
