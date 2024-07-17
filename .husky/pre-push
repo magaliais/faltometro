@@ -1,0 +1,8 @@
+echo 'Trying to build app...'
+
+pnpm run build ||
+(echo 'Error: pnpm build failed' && exit 1)
+
+rm -r dist # remove dist folder
+
+echo 'Done!'
