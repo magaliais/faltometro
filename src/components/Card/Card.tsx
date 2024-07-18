@@ -148,12 +148,12 @@ function Card({
           {title}
         </p>
 
-        <button
-          className={`absolute right-4 top-4 rounded-md p-1 pb-1.5 ${getDeleteButtonStyle()} cursor-pointer`}
+        <span
+          className={`absolute right-4 top-4 rounded-md p-1 pb-1.5 cursor-pointer z-10 ${getDeleteButtonStyle()}`}
           onClick={() => setIsDeletionModalOpen(true)}
         >
           <Trash size={14} />
-        </button>
+        </span>
 
         <div className="mt-6">
           <p>Professor: {professor}</p>
