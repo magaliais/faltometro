@@ -1,12 +1,16 @@
 import { Trash } from "lucide-react";
 import { useCardsContext } from "../../contexts/CardsContext";
 import type { CardType } from "../../types/CardType";
+import { useState } from "react";
+import Modal from "../Modal/Modal";
 
 function Card({
   cardData: { absences, credits, id, professor, title, theme },
 }: {
   cardData: CardType;
 }) {
+  const [isDeletionModalOpen, setIsDeletionModalOpen] = useState(false);
+
   const { deleteCard, increaseCardAbsence, decreaseCardAbsence } =
     useCardsContext();
 
@@ -26,8 +30,8 @@ function Card({
         </p>
 
         <button
-          className="absolute right-4 top-4 rounded-md p-1 pb-1.5 bg-red-500 cursor-pointer"
-          onClick={() => deleteCard(id)}
+          className="absolute right-4 top-4 rounded-md p-1 pb-1.5 bg-sky-700 cursor-pointer"
+          onClick={() => setIsDeletionModalOpen(true)}
         >
           <Trash size={14} />
         </button>
@@ -55,6 +59,31 @@ function Card({
       <section className="flex items-center">
         <RadialProgressBar progress={40} absences={absences} theme={theme} />
       </section>
+
+      <Modal isOpen={isDeletionModalOpen} setIsOpen={setIsDeletionModalOpen}>
+        <h3>
+          Tem certeza que deseja excluir a matéria{" "}
+          <span className="italic">{title}</span>?
+        </h3>
+
+        <div className="flex w-fit gap-4 mt-10 ml-auto">
+          <button
+            onClick={() => setIsDeletionModalOpen(false)}
+            className="border-2 border-violet-700 text-violet-500 font-semibold rounded-md px-4 py-2"
+          >
+            Cancelar
+          </button>
+          <button
+            onClick={() => {
+              deleteCard(id);
+              setIsDeletionModalOpen(false);
+            }}
+            className="bg-violet-700 px-4 py-2 rounded-md tracking-wider"
+          >
+            Excluir
+          </button>
+        </div>
+      </Modal>
     </article>
   );
 }
