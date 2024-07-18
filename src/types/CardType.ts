@@ -2,7 +2,7 @@ export type CardType = {
   id: string;
   title: string;
   professor: string;
-  credits: number;
+  maxPermittedAbsences: number;
   absences: number;
   theme: "sky" | "emerald";
 };

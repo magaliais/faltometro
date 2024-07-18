@@ -5,7 +5,7 @@ import { useState } from "react";
 import Modal from "../Modal/Modal";
 
 function Card({
-  cardData: { absences, credits, id, professor, title, theme },
+  cardData: { absences, maxPermittedAbsences, id, professor, title, theme },
 }: {
   cardData: CardType;
 }) {
@@ -82,7 +82,6 @@ function Card({
 
         <div className="mt-6">
           <p>Professor: {professor}</p>
-          <p>Créditos: {credits}</p>
 
           <div className="flex gap-3 mt-4 xs:flex-col">
             <button
@@ -101,7 +100,11 @@ function Card({
         </div>
       </section>
       <section className="flex items-center">
-        <RadialProgressBar progress={40} absences={absences} theme={theme} />
+        <RadialProgressBar
+          absences={absences}
+          maxPermittedAbsences={maxPermittedAbsences}
+          theme={theme}
+        />
       </section>
 
       <Modal isOpen={isDeletionModalOpen} setIsOpen={setIsDeletionModalOpen}>
@@ -136,16 +139,21 @@ export default Card;
 
 // ! ==================================================================================
 interface RadialProgressBarProps {
-  progress: number;
   absences: number;
+  maxPermittedAbsences: number;
   theme: "sky" | "emerald";
 }
 
-const RadialProgressBar = ({ absences, theme }: RadialProgressBarProps) => {
+const RadialProgressBar = ({
+  absences,
+  maxPermittedAbsences,
+  theme,
+}: RadialProgressBarProps) => {
   const circleRadius = 40;
   const circleCircumference = 2 * Math.PI * circleRadius;
   const strokeDashoffset =
-    circleCircumference - (absences / 8) * circleCircumference;
+    circleCircumference -
+    (absences / maxPermittedAbsences) * circleCircumference;
 
   const getProgressColor = () => {
     switch (theme) {
@@ -180,7 +188,9 @@ const RadialProgressBar = ({ absences, theme }: RadialProgressBarProps) => {
           className={`transition-stroke-dashoffset duration-500 ease-out ${getProgressColor()}`}
         />
       </svg>
-      <div className="absolute text-xl font-medium">{absences}/8</div>
+      <div className="absolute text-xl font-medium">
+        {absences}/{maxPermittedAbsences}
+      </div>
     </div>
   );
 };

@@ -8,7 +8,7 @@ import { v4 as uuidv4 } from "uuid";
 function App() {
   const [title, setTitle] = useState("");
   const [professor, setProfessor] = useState("");
-  const [credits, setCredits] = useState(0);
+  const [maxPermittedAbsences, setMaxPermittedAbsences] = useState<number>(4);
   const [theme, setTheme] = useState<"emerald" | "sky">("emerald");
 
   const onColorChange = (e: ChangeEvent<HTMLInputElement>) => {
@@ -24,7 +24,7 @@ function App() {
       id: uuidv4(),
       title,
       professor,
-      credits,
+      maxPermittedAbsences,
       theme: theme,
       absences: 0,
     });
@@ -33,7 +33,7 @@ function App() {
 
     setTitle("");
     setProfessor("");
-    setCredits(0);
+    setMaxPermittedAbsences(0);
   };
 
   return (
@@ -59,33 +59,51 @@ function App() {
       </button>
 
       <Modal isOpen={isModalOpen} setIsOpen={setIsModalOpen}>
-        <p className="mb-8 text-2xl">Criar nova matéria</p>
+        <p className="mb-6 text-2xl">Criar nova matéria</p>
 
-        <fieldset className="flex flex-col gap-5">
-          <input
-            type="text"
-            className="px-3 py-2 bg-[#222427] rounded-lg border border-zinc-600 placeholder:text-zinc-300 focus:outline focus:outline-violet-500 focus:outline-2 focus:outline-offset-2"
-            name="Matéria"
-            placeholder="Nome da matéria"
-            onChange={(e) => setTitle(e.target.value)}
-            value={title}
-          />
-          <input
-            type="text"
-            className="px-3 py-2 bg-[#222427] rounded-lg border border-zinc-600 placeholder:text-zinc-300 focus:outline focus:outline-violet-500 focus:outline-2 focus:outline-offset-2"
-            name="Professor"
-            placeholder="Professor"
-            onChange={(e) => setProfessor(e.target.value)}
-            value={professor}
-          />
-          <input
-            type="number"
-            className="px-3 py-2 bg-[#222427] rounded-lg border border-zinc-600 placeholder:text-zinc-300 focus:outline focus:outline-violet-500 focus:outline-2 focus:outline-offset-2"
-            name="Créditos"
-            placeholder="Créditos"
-            onChange={(e) => setCredits(Number(e.target.value))}
-            value={credits}
-          />
+        <fieldset className="flex flex-col gap-3">
+          <div className="flex flex-col">
+            <label htmlFor="title" className="pb-2 pl-1">
+              Matéria
+            </label>
+            <input
+              type="text"
+              className="px-3 py-2 bg-[#222427] rounded-lg border border-zinc-600 placeholder:text-zinc-300 focus:outline focus:outline-violet-500 focus:outline-2 focus:outline-offset-2"
+              id="title"
+              onChange={(e) => setTitle(e.target.value)}
+              value={title}
+            />
+          </div>
+
+          <div className="flex flex-col">
+            <label htmlFor="professor" className="pb-2 pl-1">
+              Professor
+            </label>
+            <input
+              type="text"
+              className="px-3 py-2 bg-[#222427] rounded-lg border border-zinc-600 placeholder:text-zinc-300 focus:outline focus:outline-violet-500 focus:outline-2 focus:outline-offset-2"
+              id="professor"
+              onChange={(e) => setProfessor(e.target.value)}
+              value={professor}
+            />
+          </div>
+
+          <div className="flex flex-col">
+            <label htmlFor="max-permitted-absences" className="pb-2 pl-1">
+              Máximo de faltas permitidas
+            </label>
+            <input
+              type="string"
+              className="px-3 py-2 bg-[#222427] rounded-lg border border-zinc-600 placeholder:text-zinc-300 focus:outline focus:outline-violet-500 focus:outline-2 focus:outline-offset-2"
+              id="max-permitted-absences"
+              onChange={(e) =>
+                setMaxPermittedAbsences(
+                  Number(e.target.value.replace(/[^0-9]/g, ""))
+                )
+              }
+              value={maxPermittedAbsences}
+            />
+          </div>
           <div className="flex flex-wrap gap-4">
             <div className="flex items-center">
               <input

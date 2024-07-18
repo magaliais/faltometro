@@ -30,7 +30,7 @@ export const CardsProvider = ({ children }: CardsProviderProps) => {
       id: card.id,
       title: card.title,
       professor: card.professor,
-      credits: card.credits,
+      maxPermittedAbsences: card.maxPermittedAbsences,
       theme: card.theme,
       absences: 0,
     };
@@ -44,7 +44,8 @@ export const CardsProvider = ({ children }: CardsProviderProps) => {
   };
 
   const increaseCardAbsence = (id: string) => {
-    if (cards.filter((card) => card.id === id)[0].absences >= 8) return;
+    const currentCard = cards.filter((card) => card.id === id)[0];
+    if (currentCard.absences >= currentCard.maxPermittedAbsences) return;
 
     const updatedCards = cards.map((card) =>
       card.id === id ? { ...card, absences: card.absences + 1 } : card
