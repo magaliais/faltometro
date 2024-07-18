@@ -27,7 +27,7 @@ export const CardsProvider = ({ children }: CardsProviderProps) => {
 
   const createCard = (card: CardType) => {
     const newCard: CardType = {
-      id: crypto.randomUUID(),
+      id: card.id,
       title: card.title,
       professor: card.professor,
       credits: card.credits,
