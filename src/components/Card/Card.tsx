@@ -14,23 +14,67 @@ function Card({
   const { deleteCard, increaseCardAbsence, decreaseCardAbsence } =
     useCardsContext();
 
+  const getFontColor = () => {
+    switch (theme) {
+      case "emerald":
+        return "text-emerald-500";
+
+      case "sky":
+        return "text-sky-500";
+    }
+  };
+
+  const getBorderColor = () => {
+    switch (theme) {
+      case "emerald":
+        return "border-emerald-500";
+
+      case "sky":
+        return "border-sky-500";
+    }
+  };
+
+  const getPrimaryButtonStyle = () => {
+    switch (theme) {
+      case "emerald":
+        return "bg-emerald-900";
+
+      case "sky":
+        return "bg-sky-900";
+    }
+  };
+
+  const getSecondaryButtonStyle = () => {
+    switch (theme) {
+      case "emerald":
+        return "border-emerald-900 text-emerald-800";
+
+      case "sky":
+        return "border-sky-900 text-sky-800";
+    }
+  };
+
+  const getDeleteButtonStyle = () => {
+    switch (theme) {
+      case "emerald":
+        return "bg-emerald-700";
+
+      case "sky":
+        return "bg-sky-700";
+    }
+  };
+
   return (
     <article
-      className={`flex justify-between bg-zinc-900 rounded-md px-6 py-4 border-2 shadow-lg relative ${
-        theme === "emerald" ? "border-emerald-500" : "border-sky-500"
-      }`}
+      className={`flex justify-between bg-zinc-900 rounded-md px-6 py-4 border-2 shadow-lg relative ${getBorderColor()}`}
     >
       <section>
-        <p
-          className={`text-xl tracking-wide font-semibold ${
-            theme === "emerald" ? "text-emerald-500" : "text-sky-500"
-          }`}
-        >
+        <p className={`text-xl tracking-wide font-semibold ${getFontColor()}`}>
           {title}
         </p>
 
         <button
-          className="absolute right-4 top-4 rounded-md p-1 pb-1.5 bg-sky-700 cursor-pointer"
+          className={`absolute right-4 top-4 rounded-md p-1 pb-1.5 ${getDeleteButtonStyle()} cursor-pointer`}
           onClick={() => setIsDeletionModalOpen(true)}
         >
           <Trash size={14} />
@@ -42,13 +86,13 @@ function Card({
 
           <div className="flex gap-3 mt-4 xs:flex-col">
             <button
-              className="rounded-md px-2 py-1 shadow-sm border border-sky-900 text-sky-800"
+              className={`rounded-md px-2 py-1 shadow-sm border ${getSecondaryButtonStyle()}`}
               onClick={() => decreaseCardAbsence(id)}
             >
               Remover falta
             </button>
             <button
-              className="rounded-md px-2 py-1 shadow-sm bg-sky-900"
+              className={`rounded-md px-2 py-1 shadow-sm ${getPrimaryButtonStyle()}`}
               onClick={() => increaseCardAbsence(id)}
             >
               Adicionar falta
@@ -102,8 +146,16 @@ const RadialProgressBar = ({ absences, theme }: RadialProgressBarProps) => {
   const circleCircumference = 2 * Math.PI * circleRadius;
   const strokeDashoffset =
     circleCircumference - (absences / 8) * circleCircumference;
-  const progressColor =
-    theme === "sky" ? "stroke-sky-500" : "stroke-emerald-500";
+
+  const getProgressColor = () => {
+    switch (theme) {
+      case "emerald":
+        return "stroke-emerald-500";
+
+      case "sky":
+        return "stroke-sky-500";
+    }
+  };
 
   return (
     <div className="flex items-center justify-center relative">
@@ -125,7 +177,7 @@ const RadialProgressBar = ({ absences, theme }: RadialProgressBarProps) => {
           strokeDasharray={circleCircumference}
           strokeDashoffset={strokeDashoffset}
           strokeLinecap="round"
-          className={`transition-stroke-dashoffset duration-500 ease-out ${progressColor}`}
+          className={`transition-stroke-dashoffset duration-500 ease-out ${getProgressColor()}`}
         />
       </svg>
       <div className="absolute text-xl font-medium">{absences}/8</div>
