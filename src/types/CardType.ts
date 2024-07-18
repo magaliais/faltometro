@@ -4,5 +4,5 @@ export type CardType = {
   professor: string;
   maxPermittedAbsences: number;
   absences: number;
-  theme: "sky" | "emerald";
+  theme: "sky" | "emerald" | "yellow" | "lime" | "fuchsia" | "pink" | "red";
 };

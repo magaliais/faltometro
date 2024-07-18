@@ -4,15 +4,16 @@ import { NotepadTextDashed, Plus } from "lucide-react";
 import { useCardsContext } from "./contexts/CardsContext";
 import Card from "./components/Card/Card";
 import { v4 as uuidv4 } from "uuid";
+import { CardType } from "./types/CardType";
 
 function App() {
   const [title, setTitle] = useState("");
   const [professor, setProfessor] = useState("");
   const [maxPermittedAbsences, setMaxPermittedAbsences] = useState<number>(4);
-  const [theme, setTheme] = useState<"emerald" | "sky">("emerald");
+  const [theme, setTheme] = useState<CardType["theme"]>("emerald");
 
   const onColorChange = (e: ChangeEvent<HTMLInputElement>) => {
-    setTheme(e.target.value as "emerald" | "sky");
+    setTheme(e.target.value as CardType["theme"]);
   };
 
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -145,6 +146,26 @@ function App() {
                 >
                   <div className="w-3 h-3 bg-sky-500 rounded-full" />{" "}
                   <span>Azul</span>
+                </label>
+              </div>
+              <div className="flex items-center">
+                <input
+                  id="yellow-radio"
+                  type="radio"
+                  value="yellow"
+                  name="colored-radio"
+                  className="w-4 h-4 bg-gray-100 border-gray-300 hidden"
+                  checked={theme === "yellow"}
+                  onChange={(e) => onColorChange(e)}
+                />
+                <label
+                  htmlFor="yellow-radio"
+                  className={`flex items-center gap-1.5 ms-2 text-sm font-medium cursor-pointer p-1 ${
+                    theme === "yellow" && "bg-violet-800 rounded"
+                  }`}
+                >
+                  <div className="w-3 h-3 bg-yellow-500 rounded-full" />{" "}
+                  <span>Amarelo</span>
                 </label>
               </div>
             </div>

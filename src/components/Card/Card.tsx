@@ -21,6 +21,21 @@ function Card({
 
       case "sky":
         return "text-sky-500";
+
+      case "yellow":
+        return "text-yellow-500";
+
+      case "lime":
+        return "text-lime-500";
+
+      case "fuchsia":
+        return "text-fuchsia-500";
+
+      case "pink":
+        return "text-pink-500";
+
+      case "red":
+        return "text-red-500";
     }
   };
 
@@ -31,6 +46,21 @@ function Card({
 
       case "sky":
         return "border-sky-500";
+
+      case "yellow":
+        return "border-yellow-500";
+
+      case "lime":
+        return "border-lime-500";
+
+      case "fuchsia":
+        return "border-fuchsia-500";
+
+      case "pink":
+        return "border-pink-500";
+
+      case "red":
+        return "border-red-500";
     }
   };
 
@@ -41,6 +71,21 @@ function Card({
 
       case "sky":
         return "bg-sky-900";
+
+      case "yellow":
+        return "bg-yellow-900";
+
+      case "lime":
+        return "bg-lime-900";
+
+      case "fuchsia":
+        return "bg-fuchsia-900";
+
+      case "pink":
+        return "bg-pink-900";
+
+      case "red":
+        return "bg-red-900";
     }
   };
 
@@ -51,6 +96,21 @@ function Card({
 
       case "sky":
         return "border-sky-900 text-sky-800";
+
+      case "yellow":
+        return "border-yellow-900 text-yellow-800";
+
+      case "lime":
+        return "border-lime-900 text-lime-800";
+
+      case "fuchsia":
+        return "border-fuchsia-900 text-fuchsia-800";
+
+      case "pink":
+        return "border-pink-900 text-pink-800";
+
+      case "red":
+        return "border-red-900 text-red-800";
     }
   };
 
@@ -61,6 +121,21 @@ function Card({
 
       case "sky":
         return "bg-sky-700";
+
+      case "yellow":
+        return "bg-yellow-700";
+
+      case "lime":
+        return "bg-lime-700";
+
+      case "fuchsia":
+        return "bg-fuchsia-700";
+
+      case "pink":
+        return "bg-pink-700";
+
+      case "red":
+        return "bg-red-700";
     }
   };
 
@@ -141,7 +216,7 @@ export default Card;
 interface RadialProgressBarProps {
   absences: number;
   maxPermittedAbsences: number;
-  theme: "sky" | "emerald";
+  theme: CardType["theme"];
 }
 
 const RadialProgressBar = ({
@@ -162,6 +237,21 @@ const RadialProgressBar = ({
 
       case "sky":
         return "stroke-sky-500";
+
+      case "yellow":
+        return "stroke-yellow-500";
+
+      case "lime":
+        return "stroke-lime-500";
+
+      case "fuchsia":
+        return "stroke-fuchsia-500";
+
+      case "pink":
+        return "stroke-pink-500";
+
+      case "red":
+        return "stroke-red-500";
     }
   };
 
