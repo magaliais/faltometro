@@ -61,7 +61,7 @@ function App() {
       <Modal isOpen={isModalOpen} setIsOpen={setIsModalOpen}>
         <p className="mb-6 text-2xl">Criar nova matéria</p>
 
-        <fieldset className="flex flex-col gap-3">
+        <fieldset className="flex flex-col gap-5">
           <div className="flex flex-col">
             <label htmlFor="title" className="pb-2 pl-1">
               Matéria
@@ -104,46 +104,49 @@ function App() {
               value={maxPermittedAbsences}
             />
           </div>
-          <div className="flex flex-wrap gap-4">
-            <div className="flex items-center">
-              <input
-                id="emerald-radio"
-                type="radio"
-                value="emerald"
-                name="colored-radio"
-                className="w-4 h-4 bg-gray-100 border-gray-300 hidden"
-                checked={theme === "emerald"}
-                onChange={(e) => onColorChange(e)}
-              />
-              <label
-                htmlFor="emerald-radio"
-                className={`flex items-center gap-1.5 ms-2 text-sm font-medium ${
-                  theme === "emerald" && "border-2 border-sky-500"
-                }`}
-              >
-                <div className="w-3 h-3 bg-emerald-500 rounded-full" />{" "}
-                <span>Verde</span>
-              </label>
-            </div>
-            <div className="flex items-center">
-              <input
-                id="sky-radio"
-                type="radio"
-                value="sky"
-                name="colored-radio"
-                className="w-4 h-4 bg-gray-100 border-gray-300 hidden"
-                checked={theme === "sky"}
-                onChange={(e) => onColorChange(e)}
-              />
-              <label
-                htmlFor="sky-radio"
-                className={`flex items-center gap-1.5 ms-2 text-sm font-medium ${
-                  theme === "sky" && "border-2 border-sky-500"
-                }`}
-              >
-                <div className="w-3 h-3 bg-sky-500 rounded-full" />{" "}
-                <span>Azul</span>
-              </label>
+          <div className="flex flex-col gap-2">
+            <p>Cor do card</p>
+            <div className="flex gap-2">
+              <div className="flex items-center">
+                <input
+                  id="emerald-radio"
+                  type="radio"
+                  value="emerald"
+                  name="colored-radio"
+                  className="w-4 h-4 bg-gray-100 border-gray-300 hidden"
+                  checked={theme === "emerald"}
+                  onChange={(e) => onColorChange(e)}
+                />
+                <label
+                  htmlFor="emerald-radio"
+                  className={`flex items-center gap-1.5 text-sm font-medium cursor-pointer p-1 ${
+                    theme === "emerald" && "bg-violet-800 rounded"
+                  }`}
+                >
+                  <div className="w-3 h-3 bg-emerald-500 rounded-full" />{" "}
+                  <span>Verde</span>
+                </label>
+              </div>
+              <div className="flex items-center">
+                <input
+                  id="sky-radio"
+                  type="radio"
+                  value="sky"
+                  name="colored-radio"
+                  className="w-4 h-4 bg-gray-100 border-gray-300 hidden"
+                  checked={theme === "sky"}
+                  onChange={(e) => onColorChange(e)}
+                />
+                <label
+                  htmlFor="sky-radio"
+                  className={`flex items-center gap-1.5 ms-2 text-sm font-medium cursor-pointer p-1 ${
+                    theme === "sky" && "bg-violet-800 rounded"
+                  }`}
+                >
+                  <div className="w-3 h-3 bg-sky-500 rounded-full" />{" "}
+                  <span>Azul</span>
+                </label>
+              </div>
             </div>
           </div>
         </fieldset>
